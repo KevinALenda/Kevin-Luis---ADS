@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação de Nota Final</title>
+    <style>
+     body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f3e7;
+            border: 1px solid #d4e7d4;
+        }
+    </style>
+    <script>
+        function verificarNota() {
+            const nota = parseFloat(document.getElementById("nota").value);
+            let mensagem;
+
+            if (nota >= 6) {
+                mensagem = "Aprovado";
+            } else if (nota > 4 && nota < 6) {
+                mensagem = "Precisa fazer prova substitutiva";
+            } else {
+                mensagem = "Reprovado";
+            }
+
+            document.getElementById("mensagem").innerText = mensagem;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Verificação de Nota Final</h1>
+        <form onsubmit="event.preventDefault(); verificarNota();">
+            <label for="nota">Digite sua nota final:</label>
+            <input type="number" id="nota" name="nota" step="0.1" min="0" max="10" required>
+            <button type="submit">Verificar</button>
+        </form>
+        <p id="mensagem"></p>
+    </div>
+</body>
+</html>

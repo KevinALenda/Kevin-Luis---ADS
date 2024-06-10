@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Cotação do Dólar</title>
+    <style>
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f3e7;
+            border: 1px solid #d4e7d4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Cotação do Dólar</h1>
+        <label for="cotacao">Cotação Atual do Dólar:</label>
+        <input type="number" id="cotacao" placeholder="Digite a cotação atual do dólar" step="0.01">
+        <button onclick="calcular()">Calcular</button>
+        <div id="resultado" class="result"></div>
+    </div>
+
+    <script>
+        function calcular() {
+            var cotacao = parseFloat(document.getElementById('cotacao').value);
+            if (isNaN(cotacao) || cotacao <= 0) {
+                alert('Por favor, insira um valor válido para a cotação.');
+                return;
+            }
+
+            var aumentos = [1, 2, 5, 10];
+            var resultado = '<h3>Valores Calculados:</h3>';
+            aumentos.forEach(function(aumento) {
+                var valorCalculado = cotacao * (1 + aumento / 100);
+                resultado += '<p>Com aumento de ' + aumento + '%: ' + valorCalculado.toFixed(2) + '</p>';
+            });
+
+            document.getElementById('resultado').innerHTML = resultado;
+        }
+    </script>
+</body>
+</html>

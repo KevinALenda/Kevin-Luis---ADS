@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divisão de Turmas</title>
+    <style>
+ body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f3e7;
+            border: 1px solid #d4e7d4;
+        }
+    </style>
+    <script>
+        function calcularTurmas() {
+            const alunosNaSala = parseInt(document.getElementById("alunosNaSala").value);
+            const numeroDeTurmas = parseInt(document.getElementById("numeroDeTurmas").value);
+            let pessoasPorTurma;
+            let pessoasSemTurma;
+
+            if (alunosNaSala <= 0 || numeroDeTurmas <= 0) {
+                alert("Por favor, insira valores válidos.");
+                return;
+            }
+
+            pessoasPorTurma = Math.floor(alunosNaSala / numeroDeTurmas);
+            pessoasSemTurma = alunosNaSala % numeroDeTurmas;
+
+            document.getElementById("pessoasPorTurma").innerText = pessoasPorTurma;
+            document.getElementById("pessoasSemTurma").innerText = pessoasSemTurma;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Divisão de Turmas</h1>
+        <form onsubmit="event.preventDefault(); calcularTurmas();">
+            <label for="alunosNaSala">Quantos alunos tem na sala?</label>
+            <input type="number" id="alunosNaSala" name="alunosNaSala" required>
+            <label for="numeroDeTurmas">Quantas turmas deseja dividir?</label>
+            <input type="number" id="numeroDeTurmas" name="numeroDeTurmas" required>
+            <button type="submit">Calcular</button>
+        </form>
+        <p>Quantidade de pessoas por turma: <span id="pessoasPorTurma"></span></p>
+        <p>Quantidade de pessoas sem turma: <span id="pessoasSemTurma"></span></p>
+    </div>
+</body>
+</html>
