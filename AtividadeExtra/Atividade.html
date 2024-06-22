@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordenar Números</title>
+    <script>
+        function ordenarNumeros() {
+    
+            let valores = [];
+            for (let i = 1; i <= 5; i++) {
+                let valor = parseInt(document.getElementById('valor' + i).value);
+                if (isNaN(valor)) {
+                    alert('Por favor, insira valores inteiros.');
+                    return;
+                }
+                if (valores.includes(valor)) {
+                    alert('Os valores devem ser diferentes.');
+                    return;
+                }
+                valores.push(valor);
+            }
+
+           
+            valores.sort((a, b) => b - a);
+
+          
+            document.getElementById('resultado').innerText = 'Valores em ordem decrescente: ' + valores.join(', ');
+        }
+    </script>
+</head>
+<body>
+    <h1>Ordenar Números</h1>
+    <p>Insira cinco valores inteiros diferentes:</p>
+    <form>
+        <input type="number" id="valor1" required><br>
+        <input type="number" id="valor2" required><br>
+        <input type="number" id="valor3" required><br>
+        <input type="number" id="valor4" required><br>
+        <input type="number" id="valor5" required><br><br>
+        <button type="button" onclick="ordenarNumeros()">Ordenar</button>
+    </form>
+    <p id="resultado"></p>
+</body>
+</html>

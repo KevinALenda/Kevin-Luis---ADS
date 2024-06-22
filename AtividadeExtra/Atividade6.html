@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crédito Especial do Banco</title>
+    <script>
+        function calcularCredito() {
+         
+            let saldoMedio = parseFloat(document.getElementById('saldoMedio').value);
+
+         
+            if (isNaN(saldoMedio) || saldoMedio < 0) {
+                alert('Por favor, insira um valor válido para o saldo médio.');
+                return;
+            }
+
+        
+            let credito = 0;
+            if (saldoMedio >= 0 && saldoMedio <= 200) {
+                credito = 0;
+            } else if (saldoMedio >= 201 && saldoMedio <= 400) {
+                credito = saldoMedio * 0.20;
+            } else if (saldoMedio >= 401 && saldoMedio <= 600) {
+                credito = saldoMedio * 0.30;
+            } else if (saldoMedio > 600) {
+                credito = saldoMedio * 0.40;
+            }
+
+      
+            document.getElementById('resultado').innerHTML = `
+                <p>Saldo médio: R$ ${saldoMedio.toFixed(2)}</p>
+                <p>Valor do crédito: R$ ${credito.toFixed(2)}</p>
+            `;
+        }
+    </script>
+</head>
+<body>
+    <h1>Crédito Especial do Banco</h1>
+    <p>Insira o saldo médio do cliente no último ano:</p>
+    <form>
+        <label for="saldoMedio">Saldo Médio (R$):</label>
+        <input type="number" id="saldoMedio" step="0.01" min="0" required><br><br>
+        <button type="button" onclick="calcularCredito()">Calcular Crédito</button>
+    </form>
+    <div id="resultado"></div>
+</body>
+</html>
